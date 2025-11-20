@@ -59,10 +59,11 @@
     @media (max-width: 780px) { .card { grid-column: 1 / -1; } }
 
     .contact {
-      grid-column: 1 / -1; display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; align-items: start; margin-top: 8px;
+      grid-column: 1 / -1; display: grid; grid-template-columns: 1fr; gap: 18px; align-items: start; margin-top: 8px;
+      justify-items: center; text-align: center;
     }
-    .contact aside { grid-column: span 5; }
-    .contact form { grid-column: span 7; }
+    .contact aside { grid-column: 1 / -1; }
+    /* form removed */
     @media (max-width: 900px) { .contact aside, .contact form { grid-column: 1 / -1; } }
 
     .note { color: var(--muted); font-size: 14px; }
@@ -82,7 +83,7 @@
     }
     .status { font-size: 14px; color: var(--muted); min-height: 1.4em; }
     .invis { position: absolute; left: -9999px; }
-    footer { max-width: 920px; margin: 20px auto 60px; padding: 0 20px; color: var(--muted); font-size: 14px; }
+    footer { max-width: 920px; margin: 20px auto 60px; padding: 0 20px; color: var(--muted); font-size: 14px; text-align: center; }
     a { color: #7edbd3; }
   </style>
 </head>
@@ -122,34 +123,9 @@
 
       <div class="contact">
         <aside>
-          <h3>Start a conversation</h3>
-          <p class="note">Prefer email? <a href="mailto:contact@annealconsulting.com">contact@annealconsulting.com</a></p>
-          <p class="note">Short on time? Send 2–3 lines about your context and timeline. We’ll take it from there.</p>
+          <h3>Contact us</h3>
+          <p class="note"><a href="mailto:contact@annealconsulting.com">contact@annealconsulting.com</a></p>
         </aside>
-
-        <form id="contact-form" class="contact-form" method="POST" action="https://api.web3forms.com/submit" novalidate>
-          <!-- Replace with your Web3Forms access key -->
-          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
-          <input type="hidden" name="from_name" value="Anneal Consulting Website" />
-          <input type="hidden" name="subject" value="New inquiry — Anneal Consulting" />
-
-          <!-- Honeypot -->
-          <input type="checkbox" name="botcheck" class="invis" tabindex="-1" autocomplete="off" />
-
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" autocomplete="name" required />
-
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" autocomplete="email" required />
-
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Two or three bullets are perfect." required></textarea>
-
-          <div class="actions">
-            <button type="submit">Send</button>
-            <div id="status" class="status" aria-live="polite"></div>
-          </div>
-        </form>
       </div>
     </section>
   </main>
@@ -159,31 +135,8 @@
   </footer>
 
   <script>
-    // Update year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Enhance form: handle submit and show inline status without redirect
-    const form = document.getElementById('contact-form');
-    const statusEl = document.getElementById('status');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      statusEl.textContent = 'Sending…';
-
-      try {
-        const formData = new FormData(form);
-        const res = await fetch(form.action, { method: 'POST', body: formData });
-        const data = await res.json();
-        if (data && data.success) {
-          statusEl.textContent = 'Thanks — we’ll be in touch.';
-          form.reset();
-        } else {
-          statusEl.textContent = 'Could not send. Email us at contact@annealconsulting.com';
-        }
-      } catch (err) {
-        statusEl.textContent = 'Network error. Try again or email us directly.';
-      }
-    });
-  </script>
+  // Update year only
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
