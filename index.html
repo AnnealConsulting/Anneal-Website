@@ -38,10 +38,7 @@
     .logo {
       display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text);
     }
-    .mark { width: 44px; height: 44px; border-radius: 12px; background:
-      conic-gradient(from 200deg, var(--brand), var(--brand-2));
-      display: grid; place-items: center; font-weight: 800; color: #071018; box-shadow: 0 6px 24px rgba(38,166,154,0.35);
-    }
+    .mark { width: 44px; height: 44px; display: block; object-fit: contain; border-radius: 12px; box-shadow: none; background: none; }
     .wordmark { font-size: 22px; font-weight: 700; letter-spacing: 0.2px; }
 
     main { max-width: 920px; margin: 20px auto 80px; padding: 0 20px; }
@@ -92,7 +89,7 @@
 <body>
   <header>
     <a class="logo" href="/">
-      <div class="mark">A</div>
+      <img class="mark" src="/logo.svg" alt="Anneal Consulting logo" />
       <div class="wordmark">Anneal Consulting Services</div>
     </a>
   </header>
@@ -132,7 +129,7 @@
 
         <form id="contact-form" class="contact-form" method="POST" action="https://api.web3forms.com/submit" novalidate>
           <!-- Replace with your Web3Forms access key -->
-          <input type="hidden" name="access_key" value="f33ef6e8-10b5-4fe1-a277-31aeb71596f0" />
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
           <input type="hidden" name="from_name" value="Anneal Consulting Website" />
           <input type="hidden" name="subject" value="New inquiry — Anneal Consulting" />
 
